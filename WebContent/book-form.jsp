@@ -12,22 +12,17 @@
 	<center>
   		<h1>User Management</h1>
         <h2>
-         <a href="new">Add New User</a>
+         <a href="book-new">Add New User</a>
          &nbsp;&nbsp;&nbsp;
-         <a href="list">List All Users</a>
+         <a href="book-list">List All Users</a>
         </h2>
  	</center>
     <div align="center">
-  	<%  if (book != null) {
-  			String authors = "";
-  			for (Author author : book.get_authors()) {
-             	authors += author.get_authName(); 			
-            }
-    %>
-   		<form action="update" method="post">
+  	<%  if (book != null) {%>
+   		<form action="book-update" method="post">
    	<%}%>
     <% if (book == null) { %>
-   		<form action="insert" method="post">
+   		<form action="book-insert" method="post">
    	<%}%>
         <table border="1" cellpadding="5">
             <caption>
@@ -41,7 +36,7 @@
 	             </h2>
             </caption>
 			<% if (book != null) {%>
-          		<input type="hidden" name="id" value="${book.get_id()}" />
+          		<input type="hidden" name="id" value="${book.get_bookId()}" />
           	<%}%>
             <tr>
                 <th>Book Name: </th>
@@ -55,7 +50,7 @@
                 <th>Category: </th>
                 <td>
                  <input type="text" name="category" size="45"
-                   value="${book.get_caregory()}"
+                   value="${book.get_category().get_categName()}"
                  />
                 </td>
             </tr>
@@ -63,7 +58,7 @@
                 <th>Author: </th>
                 <td>
                  <input type="text" name="author" size="45"
-                   value="${authors}"
+                   value="${book.getAuthorNames(book.get_authors())}"
                  />
                 </td>
             </tr>
