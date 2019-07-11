@@ -23,6 +23,17 @@ public class Category {
 	public Category() {
 	}
 	
+	public Category(String name) {
+		super();
+		this._categName = name;
+	}
+	
+	public Category(int id, String name) {
+		super();
+		this._categId = id;
+		this._categName = name;
+	}
+	
 	public Category(String name, Book... books) {
 		super();
 		this._categName = name;
