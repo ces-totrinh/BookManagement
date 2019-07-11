@@ -8,11 +8,11 @@
 </head>
 <body>
 	<center>
-  		<h1>User Management</h1>
+  		<h1>Book Management</h1>
         <h2>
-         <a href="new">Add New User</a>
+         <a href="book-new">Add New Book</a>
          &nbsp;&nbsp;&nbsp;
-         <a href="list">List All Users</a>
+         <a href="book-list">List All Books</a>
         </h2>
  	</center>
 </body>
