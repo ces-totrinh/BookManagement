@@ -27,6 +27,12 @@ public class Author {
 		this._authName = name;
 		
 	}
+	
+	public Author(int id, String name) {
+		super();
+		this._authId = id;
+		this._authName = name;
+	}
 
 	public int get_authId() {
 		return _authId;
