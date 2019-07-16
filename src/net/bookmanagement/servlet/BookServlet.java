@@ -77,7 +77,9 @@ public class BookServlet extends HttpServlet{
     	String authorList = request.getParameter("author");
     	String categoryName = request.getParameter("category");
     	
-    	List<String> authorNames = new ArrayList<String>(Arrays.asList(authorList.split(",")));
+    	List<String> authorNames = new ArrayList<String>(Arrays.asList(authorList.split(", ")));
+    	
+    	if(!bookDao.checkBookExisted(name, categoryName, authorNames)) {
     	
     	Set<Author> authors = new HashSet<>();
     	
@@ -92,8 +94,10 @@ public class BookServlet extends HttpServlet{
     	if (category == null) category = new Category(categoryName);
     	Book book = new Book(name, category, authors);
     	
-    	bookDao.saveBook(book);;
+    	bookDao.saveBook(book);
+    	}
     	response.sendRedirect("book-list");
+    	
     }
     	
     private void deleteBook(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
@@ -115,7 +119,8 @@ public class BookServlet extends HttpServlet{
     	String name = request.getParameter("name");
     	String authorList = request.getParameter("author");
     	String categoryName = request.getParameter("category");
-    	List<String> authorNames = Arrays.asList(authorList.split("\\s*,\\s*"));
+    	List<String> authorNames = new ArrayList<String>(Arrays.asList(authorList.split(", ")));
+    	
     	Set<Author> authors = new HashSet<>();
 
     	for (String n : authorNames) {
