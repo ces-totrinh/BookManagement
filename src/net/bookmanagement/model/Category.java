@@ -7,38 +7,28 @@ import java.util.stream.Stream;
 import javax.persistence.*;
 
 @Entity()
-@Table(name="category_tbl")
+@Table(name = "category_tbl")
 public class Category {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="category_id")
-	private int _categId;
-	
-	@Column(name="category_name")
-	private String _categName;
-	
-	@OneToMany(mappedBy = "_category", cascade = CascadeType.ALL)
-    private Set<Book> _books;
-	
+
 	public Category() {
 	}
-	
+
 	public Category(String name) {
 		super();
 		this._categName = name;
 	}
-	
+
 	public Category(int id, String name) {
 		super();
 		this._categId = id;
 		this._categName = name;
 	}
-	
+
 	public Category(String name, Book... books) {
 		super();
 		this._categName = name;
 		this._books = Stream.of(books).collect(Collectors.toSet());
-        this._books.forEach(x -> x.set_category(this));
+		this._books.forEach(x -> x.set_category(this));
 	}
 
 	public int get_categId() {
@@ -64,5 +54,16 @@ public class Category {
 	public void set_books(Set<Book> _books) {
 		this._books = _books;
 	}
-	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "category_id")
+	private int _categId;
+
+	@Column(name = "category_name")
+	private String _categName;
+
+	@OneToMany(mappedBy = "_category", cascade = CascadeType.ALL)
+	private Set<Book> _books;
+
 }

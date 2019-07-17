@@ -5,29 +5,18 @@ import java.util.*;
 import javax.persistence.*;
 
 @Entity
-@Table(name="author_tbl")
+@Table(name = "author_tbl")
 public class Author {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="author_id")
-	private int _authId;
-	
-	@Column(name="author_name")
-	private String _authName;
-	
-	@ManyToMany(mappedBy = "_authors")
-	private Set<Book> _books = new HashSet<>();
-	
+
 	public Author() {
 	}
-	
+
 	public Author(String name) {
 		super();
 		this._authName = name;
-		
+
 	}
-	
+
 	public Author(int id, String name) {
 		super();
 		this._authId = id;
@@ -57,5 +46,16 @@ public class Author {
 	public void set_books(Set<Book> _books) {
 		this._books = _books;
 	}
-	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "author_id")
+	private int _authId;
+
+	@Column(name = "author_name")
+	private String _authName;
+
+	@ManyToMany(mappedBy = "_authors")
+	private Set<Book> _books = new HashSet<>();
+
 }
