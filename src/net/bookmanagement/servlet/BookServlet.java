@@ -81,8 +81,9 @@ public class BookServlet extends HttpServlet {
 			for (String n : authorNames) {
 				// get author object if it existed
 				Author author = authorDao.getAuthorByName(n);
-				if (author == null)
+				if (author == null) {
 					author = new Author(n);
+				}
 				authors.add(author);
 			}
 			// get category object if it existed
@@ -123,14 +124,16 @@ public class BookServlet extends HttpServlet {
 
 		for (String n : authorNames) {
 			Author author = authorDao.getAuthorByName(n);
-			if (author == null)
+			if (author == null) {
 				author = new Author(n);
+			}
 			authors.add(author);
 		}
 
 		Category category = categoryDao.getCategoryByName(categoryName);
-		if (category == null)
+		if (category == null) {
 			category = new Category(categoryName);
+		}
 
 		Book book = new Book(id, name, category, authors);
 		bookDao.updateBook(book);
@@ -151,8 +154,8 @@ public class BookServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
+	private AuthorDAO authorDao;
 	private BookDAO bookDao;
 	private CategoryDAO categoryDao;
-	private AuthorDAO authorDao;
 
 }
